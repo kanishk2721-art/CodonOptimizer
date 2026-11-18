@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Browser-based synonymous codon optimization and DNA sequence analysis tool.">
+<title>Codon Optimizer | BioLab</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="app-shell">
+<header class="topbar"><a class="brand" href="#"><span class="brand-mark">🧬</span><span>Codon<span class="brand-accent">Lab</span></span></a><span class="top-label">COMPUTATIONAL BIOLOGY TOOL</span><a class="github-link" href="https://github.com/kanishk2721-art/CodonOptimizer" target="_blank" rel="noopener">GitHub ↗</a></header>
+<main>
+<section class="hero"><div class="eyebrow"><span class="dot"></span> DNA DESIGN WORKSPACE</div><h1>Optimize your <span>sequence.</span></h1><p>Adapt synonymous codons to a selected host while preserving the encoded protein sequence.</p></section>
+<div class="workspace">
+<section class="panel input-panel">
+<div class="panel-heading"><div><span class="step">01</span><h2>Input sequence</h2></div><button class="text-btn" id="exampleBtn">Load example ↗</button></div>
+<label for="sequenceInput">DNA sequence <span class="hint">Raw DNA or FASTA</span></label>
+<textarea id="sequenceInput" spellcheck="false" placeholder="Paste DNA sequence here…&#10;>example_gene&#10;ATGGCTTTTGGTGAACTGAAACGTGCTTAA"></textarea>
+<div class="input-meta"><span id="inputLength">0 bp</span><span id="inputStatus">Waiting for sequence</span></div>
+<div class="controls"><div class="field"><label for="organism">Target organism</label><select id="organism"><option value="ecoli">Escherichia coli</option><option value="yeast">Saccharomyces cerevisiae (Yeast)</option><option value="human">Homo sapiens</option></select></div><button class="primary-btn" id="optimizeBtn"><span>Optimize sequence</span><span>→</span></button></div>
+<div class="notice"><strong>Research note</strong> Codon preference values in this demo are simplified illustrative weights. They are not a validated organism-specific dataset and should not be used to infer expression outcomes.</div>
+</section>
+<section class="panel result-panel" id="resultsPanel">
+<div class="panel-heading"><div><span class="step">02</span><h2>Optimization report</h2></div><span class="status-pill" id="resultStatus">READY</span></div>
+<div class="empty-state" id="emptyState"><div class="empty-icon">⌬</div><h3>Your results will appear here</h3><p>Enter a coding DNA sequence, choose a host, and run optimization.</p></div>
+<div id="results" hidden>
+<div class="metrics-grid">
+<div class="metric"><span>GC content</span><strong id="gcMetric">—</strong><small id="gcChange">Original → optimized</small></div>
+<div class="metric"><span>Approx. CAI</span><strong id="caiMetric">—</strong><small>Relative codon preference</small></div>
+<div class="metric"><span>Codons changed</span><strong id="changedMetric">—</strong><small id="changedPercent">—</small></div>
+<div class="metric"><span>Sequence length</span><strong id="lengthMetric">—</strong><small>DNA base pairs</small></div>
+</div>
+<div class="validation" id="validation"><span class="validation-icon">✓</span><div><strong>Protein preservation check</strong><span id="proteinCheck">Translated proteins match</span></div></div>
+<div class="sequence-section"><div class="sequence-heading"><h3>Optimized DNA</h3><div class="sequence-actions"><button id="copyBtn" class="secondary-btn">Copy</button><button id="downloadBtn" class="secondary-btn">Download FASTA</button></div></div><pre id="optimizedSequence" class="sequence-box"></pre></div>
+<div class="sequence-section"><div class="sequence-heading"><h3>Codon comparison</h3><span class="legend"><i></i> Changed codon</span></div><div class="comparison" id="comparison"></div></div>
+<div class="sequence-section"><div class="sequence-heading"><h3>Protein translation</h3></div><div class="protein-box"><div><label>Original</label><code id="originalProtein"></code></div><div><label>Optimized</label><code id="optimizedProtein"></code></div></div></div>
+</div>
+</section>
+</div>
+<section class="info-grid"><article class="info-card"><span class="info-number">01</span><h3>Synonymous substitution</h3><p>Codons are replaced by synonymous alternatives selected according to the target-host preference weights.</p></article><article class="info-card"><span class="info-number">02</span><h3>Protein validation</h3><p>The original and optimized DNA are translated using the standard genetic code and compared.</p></article><article class="info-card"><span class="info-number">03</span><h3>Sequence metrics</h3><p>GC percentage, codon changes and a simplified codon adaptation index are reported.</p></article></section>
+<footer><span>CodonLab · Educational prototype</span><span>Runs locally in your browser · No sequence is uploaded</span></footer>
+</main></div>
+<script src="assets/app.js"></script>
+</body></html>
